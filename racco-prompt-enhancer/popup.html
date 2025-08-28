@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>RACCO Prompt Enhancer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      body{ font-family: Arial, sans-serif; min-width:260px; padding:12px }
+      label{ display:block; margin-top:8px }
+      input[type=text], textarea{ width:100% }
+      button{ margin-top:10px }
+    </style>
+  </head>
+  <body>
+    <h3>RACCO Prompt Enhancer</h3>
+    <label>Server endpoint (optional)</label>
+    <input id="endpoint" type="text" placeholder="https://your-server.example/enhance" />
+    <small>Leave blank to use local fallback enhancement.</small>
+
+    <label>API key (not recommended in extension)</label>
+    <input id="apiKey" type="text" placeholder="(Prefer server-side storage)" />
+
+    <button id="save">Save</button>
+    <button id="test">Test Enhance</button>
+    <div id="status" style="margin-top:8px;color:green"></div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

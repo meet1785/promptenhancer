@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RACCO Prompt Enhancer Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .editable-div {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            min-height: 50px;
+            border-radius: 4px;
+        }
+        h1 {
+            color: #4285f4;
+        }
+        h3 {
+            color: #333;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 RACCO Prompt Enhancer Test Page</h1>
+    <p>This page contains various text input elements to test the RACCO Prompt Enhancer extension. After installing the extension, you should see "Enhance" buttons next to each input field below.</p>
+
+    <div class="test-section">
+        <h3>📝 Standard Textarea</h3>
+        <p>Try typing a prompt here:</p>
+        <textarea placeholder="Write a summary of..."></textarea>
+    </div>
+
+    <div class="test-section">
+        <h3>📄 Text Input Field</h3>
+        <p>Type a short prompt:</p>
+        <input type="text" placeholder="Create a blog post about..." />
+    </div>
+
+    <div class="test-section">
+        <h3>✏️ Contenteditable Div</h3>
+        <p>This div is contenteditable:</p>
+        <div class="editable-div" contenteditable="true">Generate ideas for...</div>
+    </div>
+
+    <div class="test-section">
+        <h3>📋 Multiple Textareas</h3>
+        <p>Test dynamic detection:</p>
+        <textarea placeholder="First textarea..."></textarea>
+        <textarea placeholder="Second textarea..."></textarea>
+    </div>
+
+    <div class="test-section">
+        <h3>🔄 Dynamic Content Test</h3>
+        <p>Click the button below to add a new textarea dynamically:</p>
+        <button onclick="addTextarea()">Add New Textarea</button>
+        <div id="dynamic-content"></div>
+    </div>
+
+    <script>
+        function addTextarea() {
+            const container = document.getElementById('dynamic-content');
+            const textarea = document.createElement('textarea');
+            textarea.placeholder = 'Dynamically added textarea...';
+            textarea.style.width = '100%';
+            textarea.style.margin = '10px 0';
+            container.appendChild(textarea);
+        }
+
+        // Add some sample content to test with
+        document.addEventListener('DOMContentLoaded', function() {
+            const textareas = document.querySelectorAll('textarea');
+            const samplePrompts = [
+                'Write a summary',
+                'Create a blog post',
+                'Generate ideas',
+                'Explain the concept',
+                'List the benefits'
+            ];
+            
+            textareas.forEach((textarea, index) => {
+                if (samplePrompts[index]) {
+                    textarea.value = samplePrompts[index];
+                }
+            });
+        });
+    </script>
+
+    <footer style="margin-top: 50px; text-align: center; color: #666; border-top: 1px solid #eee; padding-top: 20px;">
+        <p>🧪 Test page for RACCO Prompt Enhancer Chrome Extension</p>
+        <p><small>Install the extension and refresh this page to see the "Enhance" buttons</small></p>
+    </footer>
+</body>
+</html>
