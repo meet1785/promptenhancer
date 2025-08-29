@@ -1,4 +1,12 @@
-# RACCO Prompt Enhancer — Chrome Extension (Tested & Debugged)
+# RACCO Prompt Enhancer — Chrome ### 2. Install Extension
+```bash
+1. Open Chrome → chrome://extensions/
+2. Enable "Developer mode" (top-right toggle)
+3. Click "Load unpacked"
+4. Select this racco-prompt-enhancer/ folder
+```
+
+### 3. Test & Use (Tested & Debugged)
 
 This folder contains a complete, tested Chrome extension for "RACCO Prompt Enhancer". 
 
@@ -24,7 +32,14 @@ This folder contains a complete, tested Chrome extension for "RACCO Prompt Enhan
 
 ## 🚀 Quick Start
 
-### 1. Install Extension
+### 1. Set Your API Key (Permanent Setup)
+```javascript
+// Edit background.js - lines 7-8:
+PROVIDER: "openai",                    // or "anthropic" 
+API_KEY: "sk-your-actual-api-key",     // Replace with your real API key
+```
+
+### 2. Install Extension
 ```bash
 1. Open Chrome → chrome://extensions/
 2. Enable "Developer mode" (top-right toggle)
@@ -32,19 +47,19 @@ This folder contains a complete, tested Chrome extension for "RACCO Prompt Enhan
 4. Select this racco-prompt-enhancer/ folder
 ```
 
-### 2. Test Locally (Optional)
+### 3. Test & Use
+- Open any webpage with text fields
+- See "Enhance" buttons appear automatically  
+- Your prompts will be enhanced using your configured API!
+
+### 4. Optional: Custom Server
 ```bash
-# Start test server
+# Start test server for development
 node test-server.js
 
 # Set endpoint in extension popup to:
 # http://localhost:3000/enhance
 ```
-
-### 3. Verify Installation
-- Open `test-page.html` in browser
-- Look for "Enhance" buttons next to text fields
-- Try enhancing some sample prompts
 
 ## 🔧 Bug Fixes Applied
 

@@ -66,16 +66,27 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const data = JSON.parse(body);
-        const enhanced = enhancePrompt(data.prompt);
+        const prompt = data.prompt || '';
+        const apiKey = data.apiKey || req.headers['authorization']?.replace('Bearer ', '') || req.headers['x-api-key'];
+        
+        // Log API key usage (first 10 chars only for security)
+        if (apiKey) {
+          console.log(`[${new Date().toLocaleTimeString()}] API Key received: ${apiKey.substring(0, 10)}...`);
+        }
+        
+        // In production, validate API key here
+        // For demo, we'll accept any API key
+        const enhanced = enhancePrompt(prompt);
         
         const response = {
           ok: true,
           enhanced: enhanced,
-          original: data.prompt,
-          timestamp: new Date().toISOString()
+          original: prompt,
+          timestamp: new Date().toISOString(),
+          authenticated: !!apiKey
         };
         
-        console.log(`[${new Date().toLocaleTimeString()}] Enhanced prompt:`, data.prompt.substring(0, 50) + '...');
+        console.log(`[${new Date().toLocaleTimeString()}] Enhanced prompt:`, prompt.substring(0, 50) + '...');
         
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(response));

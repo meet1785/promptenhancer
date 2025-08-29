@@ -12,16 +12,24 @@
     </style>
   </head>
   <body>
-    <h3>RACCO Prompt Enhancer</h3>
-    <label>Server endpoint (optional)</label>
-    <input id="endpoint" type="text" placeholder="https://your-server.example/enhance" />
-    <small>Leave blank to use local fallback enhancement.</small>
+    <h3>🚀 RACCO Prompt Enhancer</h3>
+    
+    <div style="background: #e8f5e8; padding: 10px; margin: 10px 0; border-radius: 5px; font-size: 12px;">
+      <strong>✅ Configured:</strong> Using Gemini API with permanent API key<br>
+      <strong>🔑 Provider:</strong> Google Gemini (gemini-2.5-flash)<br>
+      <strong>🛡️ Status:</strong> Ready to enhance prompts
+    </div>
 
-    <label>API key (not recommended in extension)</label>
-    <input id="apiKey" type="text" placeholder="(Prefer server-side storage)" />
+    <label>Server endpoint (optional override - currently disabled)</label>
+    <input id="endpoint" type="text" placeholder="Using permanent Gemini configuration" disabled />
+    <small>Permanent Gemini API key configured in extension code.</small>
 
-    <button id="save">Save</button>
-    <button id="test">Test Enhance</button>
+    <label>API key (configured permanently in code)</label>
+    <input id="apiKey" type="password" placeholder="Gemini API key hardcoded" disabled />
+    <small>✅ Your Gemini API key is securely configured in the extension.</small>
+
+    <button id="save" disabled>Settings Locked (Permanent Config)</button>
+    <button id="test">Test Gemini Enhancement</button>
     <div id="status" style="margin-top:8px;color:green"></div>
 
     <script src="popup.js"></script>

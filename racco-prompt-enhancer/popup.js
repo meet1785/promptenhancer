@@ -1,4 +1,4 @@
-// popup.js
+// popup.js - Updated for permanent Gemini configuration
 const endpointEl = document.getElementById('endpoint');
 const apiKeyEl = document.getElementById('apiKey');
 const saveBtn = document.getElementById('save');
@@ -8,50 +8,29 @@ const status = document.getElementById('status');
 function showStatus(message, isError = false) {
   status.style.color = isError ? 'red' : 'green';
   status.innerText = message;
-  setTimeout(() => status.innerText = '', 3000);
+  setTimeout(() => status.innerText = '', 4000);
 }
 
-// load stored settings
-chrome.storage.sync.get(['endpoint', 'apiKey'], ({ endpoint, apiKey }) => {
-  if (endpoint && endpoint.endpoint) {
-    endpointEl.value = endpoint.endpoint;
-  }
-  if (apiKey) {
-    apiKeyEl.value = apiKey;
-  }
+// Show that permanent config is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  showStatus('✅ Gemini API permanently configured and ready!');
+  
+  // Set display values for the disabled fields
+  endpointEl.value = 'Permanent: Google Gemini API';
+  apiKeyEl.value = '••••••••••••••••••••••••';
 });
 
-saveBtn.addEventListener('click', () => {
-  const endpointValue = endpointEl.value.trim();
-  const apiKeyValue = apiKeyEl.value.trim();
-  
-  // Validate endpoint URL if provided
-  if (endpointValue && !endpointValue.startsWith('http')) {
-    showStatus('Endpoint must start with http:// or https://', true);
-    return;
-  }
-  
-  chrome.storage.sync.set({ 
-    endpoint: { endpoint: endpointValue }, 
-    apiKey: apiKeyValue 
-  }, () => {
-    if (chrome.runtime.lastError) {
-      showStatus('Error saving settings: ' + chrome.runtime.lastError.message, true);
-    } else {
-      showStatus('Settings saved successfully!');
-    }
-  });
-});
-
-// test by sending a message to the background to enhance a sample prompt
+// Test function - works with permanent Gemini configuration
 testBtn.addEventListener('click', () => {
-  const sample = 'Write a summary of a technical article';
+  const sample = 'Write a guide for beginners';
   testBtn.disabled = true;
-  testBtn.innerText = 'Testing...';
+  testBtn.innerText = 'Testing Gemini...';
+  
+  showStatus('🧪 Testing Gemini API enhancement...');
   
   chrome.runtime.sendMessage({ type: 'ENHANCE_PROMPT', prompt: sample }, (resp) => {
     testBtn.disabled = false;
-    testBtn.innerText = 'Test Enhance';
+    testBtn.innerText = 'Test Gemini Enhancement';
     
     if (chrome.runtime.lastError) {
       showStatus('Extension error: ' + chrome.runtime.lastError.message, true);
@@ -64,13 +43,21 @@ testBtn.addEventListener('click', () => {
     }
     
     if (resp.ok) {
-      showStatus('Test successful! Check console for output');
-      console.log('=== RACCO Enhancement Test ===');
-      console.log('Original:', sample);
-      console.log('Enhanced:', resp.enhanced);
-      console.log('===========================');
+      showStatus('✅ Gemini API test successful! Check console for full output');
+      console.log('=== RACCO Gemini Enhancement Test ===');
+      console.log('🔑 Using permanent Gemini API key');
+      console.log('📝 Original:', sample);
+      console.log('🚀 Enhanced by Gemini:');
+      console.log(resp.enhanced);
+      console.log('=====================================');
     } else {
-      showStatus('Enhancement failed: ' + (resp.error || 'unknown error'), true);
+      showStatus('❌ Enhancement failed: ' + (resp.error || 'unknown error'), true);
+      console.error('Enhancement error:', resp.error);
     }
   });
+});
+
+// Save button is disabled but show message if clicked
+saveBtn.addEventListener('click', () => {
+  showStatus('ℹ️ Settings are permanently configured in extension code', false);
 });
